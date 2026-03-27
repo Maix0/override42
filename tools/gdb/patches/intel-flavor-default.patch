@@ -1,0 +1,13 @@
+diff --git a/gdb/i386-tdep.c b/gdb/i386-tdep.c
+index 549297e..09d95da 100644
+--- a/gdb/i386-tdep.c
++++ b/gdb/i386-tdep.c
+@@ -382,7 +382,7 @@ static const char *valid_flavors[] =
+   intel_flavor,
+   NULL
+ };
+-static const char *disassembly_flavor = att_flavor;
++static const char *disassembly_flavor = intel_flavor;
+ 
+ 
+ /* Use the program counter to determine the contents and size of a

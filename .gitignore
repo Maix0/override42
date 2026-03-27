@@ -1,0 +1,5 @@
+.dl/
+files/
+.direnv/
+tools/.out
+tools/*/sources

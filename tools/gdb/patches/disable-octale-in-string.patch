@@ -1,0 +1,13 @@
+diff --git a/gdb/valprint.c b/gdb/valprint.c
+index 325cf40..7a4c178 100644
+--- a/gdb/valprint.c
++++ b/gdb/valprint.c
+@@ -1565,7 +1565,7 @@ print_wchar (gdb_wint_t w, const gdb_byte *orig,
+ 						  byte_order);
+ 		/* If the value fits in 3 octal digits, print it that
+ 		   way.  Otherwise, print it as a hex escape.  */
+-		if (value <= 0777)
++		if (0 && value <= 0777)
+ 		  sprintf (octal, "\\%.3o", (int) (value & 0777));
+ 		else
+ 		  sprintf (octal, "\\x%lx", (long) value);

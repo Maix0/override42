@@ -1,0 +1,13 @@
+diff --git a/gdb/stack.c b/gdb/stack.c
+index b15b5fc..e16660c 100644
+--- a/gdb/stack.c
++++ b/gdb/stack.c
+@@ -2642,7 +2642,7 @@ source line."),
+ 			        NULL,
+ 			        show_disassemble_next_line,
+ 			        &setlist, &showlist);
+-  disassemble_next_line = AUTO_BOOLEAN_FALSE;
++  disassemble_next_line = AUTO_BOOLEAN_TRUE;
+ 
+   add_setshow_enum_cmd ("entry-values", class_stack,
+ 			print_entry_values_choices, &print_entry_values,

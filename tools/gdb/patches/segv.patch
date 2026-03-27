@@ -1,0 +1,28 @@
+diff --git a/gdb/cli/cli-cmds.c b/gdb/cli/cli-cmds.c
+index c38167a..c934a36 100644
+--- a/gdb/cli/cli-cmds.c
++++ b/gdb/cli/cli-cmds.c
+@@ -219,6 +219,13 @@ error_no_arg (char *why)
+   error (_("Argument required (%s)."), why);
+ }
+ 
++static void
++segv_command (char *args, int from_tty)
++{
++  char cmd[] = "print $_siginfo._sifields._sigfault.si_addr";
++  execute_command (cmd, from_tty);
++}
++
+ /* The "info" command is defined as a prefix, with allow_unknown = 0.
+    Therefore, its own definition is called only for "info" with no
+    args.  */
+@@ -1656,6 +1663,9 @@ init_cli_cmds (void)
+   /* Define the classes of commands.
+      They will appear in the help list in alphabetical order.  */
+ 
++  add_cmd ("segv", class_vars, segv_command, _("Print address of segmentation fault"), &cmdlist);
++  add_com_alias("sv", "segv", class_vars, 1);
++  
+   add_cmd ("internals", class_maintenance, NULL, _("\
+ Maintenance commands.\n\
+ Some gdb commands are provided just for use by gdb maintainers.\n\
