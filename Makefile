@@ -7,6 +7,7 @@ COPY           = wl-copy
 
 SSH_PORT_VM    = 4242
 SSH_PORT_HOST  = 4242
+SSH_HOST_NAME  = override.local.maix.me
 
 
 VM_NAME        = OverRide
@@ -70,7 +71,7 @@ LEVEL=0
 LEVEL_PREFIX=level0
 export LEVEL
 ifneq ("$(LEVEL)", "0")
-	PASSFILE="./levels/$(shell sh -xc "echo $$(( $(LEVEL) - 1 ))")/flag"
+	PASSFILE="./levels/$(shell sh -c "echo $$(( $(LEVEL) - 1 ))")/flag"
 else
 	PASSFILE="./levels/0/passwd"
 endif
@@ -81,7 +82,8 @@ ssh: sshpass
 	@-cat $(PASSFILE)
 	@#-cat $(PASSFILE) | tr -d '\n' | $(COPY)
 	@printf "\n\n";
-	-TERM=xterm tools/.out/sshpass -f$(PASSFILE) ssh -p $(SSH_PORT_HOST) "$(LEVEL_PREFIX)$(LEVEL)@override.local.maix.me"
+	-TERM=xterm tools/.out/sshpass -f$(PASSFILE) ssh -p $(SSH_PORT_HOST) "$(LEVEL_PREFIX)$(LEVEL)@$(SSH_HOST_NAME)" \
+	-t 'export PATH=/tmp:$$PATH; $$SHELL'
 
 FILE=./$(LEVEL_PREFIX)$(LEVEL)
 copy: sshpass
@@ -90,7 +92,7 @@ copy: sshpass
 	@-cat $(PASSFILE)
 	@#-cat $(PASSFILE) | tr -d '\n' | $(COPY)
 	@printf "\n\n";
-	-TERM=xterm tools/.out/sshpass -f$(PASSFILE) scp -P $(SSH_PORT_HOST) "$(LEVEL_PREFIX)$(LEVEL)@override.local.maix.me:~/$(FILE)" "files/$(FILE)"
+	-TERM=xterm tools/.out/sshpass -f$(PASSFILE) scp -P $(SSH_PORT_HOST) "$(LEVEL_PREFIX)$(LEVEL)@$(SSH_HOST_NAME):~/$(FILE)" "files/$(FILE)"
 
 level:
 	cp -r ./levels/_template ./levels/$(LEVEL)

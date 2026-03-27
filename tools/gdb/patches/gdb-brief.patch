@@ -1,0 +1,33 @@
+diff --git a/gdb/top.c b/gdb/top.c
+index 903795e..021d752 100644
+--- a/gdb/top.c
++++ b/gdb/top.c
+@@ -1097,28 +1097,6 @@ command_line_input (char *prompt_arg, int repeat, char *annotation_suffix)
+ void
+ print_gdb_version (struct ui_file *stream)
+ {
+-  /* From GNU coding standards, first line is meant to be easy for a
+-     program to parse, and is just canonical program name and version
+-     number, which starts after last space.  */
+-
+-  fprintf_filtered (stream, "GNU gdb %s%s\n", PKGVERSION, version);
+-
+-  /* Second line is a copyright notice.  */
+-
+-  fprintf_filtered (stream,
+-		    "Copyright (C) 2012 Free Software Foundation, Inc.\n");
+-
+-  /* Following the copyright is a brief statement that the program is
+-     free software, that users are free to copy and change it on
+-     certain conditions, that it is covered by the GNU GPL, and that
+-     there is no warranty.  */
+-
+-  fprintf_filtered (stream, "\
+-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\
+-\nThis is free software: you are free to change and redistribute it.\n\
+-There is NO WARRANTY, to the extent permitted by law.  Type \"show copying\"\n\
+-and \"show warranty\" for details.\n");
+-
+   /* After the required info we print the configuration information.  */
+ 
+   fprintf_filtered (stream, "This GDB was configured as \"");
