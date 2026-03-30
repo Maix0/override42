@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(int argc, const char **argv, const char **envp)
+{
+  char s[100]; // [esp+28h] [ebp-70h] BYREF
+  unsigned int i; // [esp+8Ch] [ebp-Ch]
+
+  i = 0;
+  fgets(s, 100, stdin);
+  for ( i = 0; i < strlen(s); ++i )
+  {
+    if ( s[i] > 0x40 && s[i] <= 0x5A )
+      s[i] ^= 0x20u;
+  }
+  printf(s);
+  exit(0);
+}
